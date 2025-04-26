@@ -6,6 +6,18 @@ fields.forEach((f) => {
     f.addEventListener("click", clickedField);
 });
 
+document.querySelector("#reset").addEventListener("click", resetField);
+
+function resetField() {
+    fields.forEach(field => {
+        console.log("Game reset")
+        field.textContent = "";
+        field.addEventListener("click", clickedField);
+        field.classList.add("available");
+    });
+    document.querySelector("h2").textContent = "The game is still on - no winner yet";
+
+}
 
 function checkWinner(mark) {
     // get text contents from the fields

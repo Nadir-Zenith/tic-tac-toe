@@ -1,5 +1,11 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh; /* full viewport height */
+    display: flex;
+    flex-direction: column; /* stack elements vertically */
+    align-items: center;    /* center horizontally */
+    justify-content: center; /* center vertically */
+    margin: 0; 
 }
 
 #board {
@@ -11,4 +17,13 @@ body {
     aspect-ratio: 1 / 1;
     font-size: 250%;
     font-weight: bold;
+}
+
+#reset {
+    align-items: center;
+}
+
+.rst {
+    font-size: 150%; 
+    margin-top: 20px;
 }
