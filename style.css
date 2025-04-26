@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: 4em 4em 4em;
+}
+
+.field {
+    aspect-ratio: 1 / 1;
+    font-size: 250%;
+    font-weight: bold;
+}
