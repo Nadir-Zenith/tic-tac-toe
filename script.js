@@ -1,13 +1,10 @@
-// user selects a field
-document.querySelector("#field1").addEventListener("click", clickedField);
-document.querySelector("#field2").addEventListener("click", clickedField);
-document.querySelector("#field3").addEventListener("click", clickedField);
-document.querySelector("#field4").addEventListener("click", clickedField);
-document.querySelector("#field5").addEventListener("click", clickedField);
-document.querySelector("#field6").addEventListener("click", clickedField);
-document.querySelector("#field7").addEventListener("click", clickedField);
-document.querySelector("#field8").addEventListener("click", clickedField);
-document.querySelector("#field9").addEventListener("click", clickedField);
+// get all fields 
+const fields = Array.from(document.querySelectorAll(".field"));
+
+// add event listeners
+fields.forEach((f) => {
+    f.addEventListener("click", clickedField);
+});
 
 function clickedField() {
     console.log("Clicked field 1");
