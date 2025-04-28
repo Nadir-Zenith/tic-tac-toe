@@ -10,6 +10,7 @@ const scores = { X: 1, O: -1, tie: 0 };
 // Add event listeners
 fields.forEach(field => field.addEventListener("click", clickedField));
 resetBtn.addEventListener("click", resetGame);
+mode.addEventListener("change", resetGame);
 
 // Reset the board
 function resetGame() {
