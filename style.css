@@ -11,6 +11,7 @@ body {
 #board {
     display: grid;
     grid-template-columns: 4em 4em 4em;
+    margin-top: 20px;
 }
 
 .field {
@@ -26,4 +27,9 @@ body {
 .rst {
     font-size: 150%; 
     margin-top: 20px;
+}
+
+#mode-select {
+    font-weight: bold;
+    font-size: 120%;
 }

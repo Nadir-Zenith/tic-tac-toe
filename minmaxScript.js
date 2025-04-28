@@ -2,6 +2,7 @@
 const fields = Array.from(document.querySelectorAll(".field"));
 const statusText = document.querySelector("h2");
 const resetBtn = document.querySelector("#reset");
+const mode = document.querySelector("#mode-select");
 
 // Score mapping
 const scores = { X: 1, O: -1, tie: 0 };
@@ -118,8 +119,20 @@ function clickedField() {
     return;
   }
 
-  const index = bestMove(state);
-  const field = fields[index];
+  // based on difficulty mode select next move
+  // if hard mode, minimax move
+ 
+  if (mode.value === "hard") {
+    const index = bestMove(state);
+    var field = fields[index];
+  } else {
+    const availableFields = fields.filter(f => f.classList.contains("available"));
+    field = availableFields[Math.floor(Math.random() * availableFields.length)];
+      // else random move
+      // const randomField = availableFields[Math.floor(Math.random() * availableFields.length)];
+
+  }
+  
   field.textContent = "X";
   field.classList.remove("available");
   field.removeEventListener("click", clickedField);
