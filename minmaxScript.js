@@ -12,13 +12,18 @@ fields.forEach(field => field.addEventListener("click", clickedField));
 resetBtn.addEventListener("click", resetGame);
 mode.addEventListener("change", resetGame);
 
+// reset field
+function resetField(field) {
+  field.textContent = " ";
+  field.classList.add("available");
+  field.addEventListener("click", clickedField);
+}
+
 // Reset the board
 function resetGame() {
-  statusText.textContent = "The game is still on - no winner yet";
+  statusText.textContent = "The game is still on- no winner yet";
   fields.forEach(field => {
-    field.textContent = " ";
-    field.classList.add("available");
-    field.addEventListener("click", clickedField);
+    resetField(field)
   });
 }
 
@@ -122,10 +127,17 @@ function clickedField() {
 
   // based on difficulty mode select next move
   // if hard mode, minimax move
- 
-  if (mode.value === "hard") {
+  const hard_modes = ["hard", "fate"];
+  if (hard_modes.includes(mode.value)) {
     const index = bestMove(state);
     var field = fields[index];
+    if (mode.value === "fate") {
+      // reset random field
+      const randomIndex = Math.floor(Math.random() * 9);
+      const field2Reset = fields[randomIndex];
+      resetField(field2Reset);
+      console.log("Field to erase",randomIndex)
+    }
   } else {
     const availableFields = fields.filter(f => f.classList.contains("available"));
     field = availableFields[Math.floor(Math.random() * availableFields.length)];
