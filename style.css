@@ -33,3 +33,22 @@ body {
     font-weight: bold;
     font-size: 120%;
 }
+
+.available {
+    background: #ffffff;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    background: rgb(245, 245, 245);
+  }
+  50% {
+    opacity: 1;
+    background: red;
+  }
+}
+
+.blink {
+  animation: blink 0.3s steps(1, start) 4;
+}

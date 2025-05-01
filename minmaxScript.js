@@ -16,6 +16,7 @@ mode.addEventListener("change", resetGame);
 function resetField(field) {
   field.textContent = " ";
   field.classList.add("available");
+  // field.classList.remove("blink");
   field.addEventListener("click", clickedField);
 }
 
@@ -110,6 +111,7 @@ function clickedField() {
   // Mark user move
   this.textContent = "O";
   this.classList.remove("available");
+  this.classList.remove("blink");
   this.removeEventListener("click", clickedField);
 
   // Check if user won
@@ -125,19 +127,24 @@ function clickedField() {
     return;
   }
 
+  if (mode.value === "fate") {
+    // reset random field
+    const randomIndex = Math.floor(Math.random() * 9);
+    const field2Reset = fields[randomIndex];
+    console.log("Field to erase",randomIndex)
+    field2Reset.classList.add("blink");
+    resetField(field2Reset);
+    
+    // field2Reset.classList.remove("blink");
+  }
+
   // based on difficulty mode select next move
   // if hard mode, minimax move
   const hard_modes = ["hard", "fate"];
   if (hard_modes.includes(mode.value)) {
     const index = bestMove(state);
     var field = fields[index];
-    if (mode.value === "fate") {
-      // reset random field
-      const randomIndex = Math.floor(Math.random() * 9);
-      const field2Reset = fields[randomIndex];
-      resetField(field2Reset);
-      console.log("Field to erase",randomIndex)
-    }
+    
   } else {
     const availableFields = fields.filter(f => f.classList.contains("available"));
     field = availableFields[Math.floor(Math.random() * availableFields.length)];
@@ -148,11 +155,17 @@ function clickedField() {
   
   field.textContent = "X";
   field.classList.remove("available");
+  field.classList.remove("blink");
   field.removeEventListener("click", clickedField);
+
+
 
   // Check if computer won
   if (checkWinner(getState()) === "X") {
     endGame("GAME OVER - Computer Won!");
+  } else if (getState().every(el => el.trim() !== "")) {
+    endGame("GAME OVER - It's a tie!");
+    return;
   }
 }
 
